@@ -142,7 +142,29 @@ sudo apt update
 sudo apt install quickgui
 ```
 
+### quickemu quickget X terminal project
+
+From Nov 2023, there is also a multi option desktop integrated text
+interface, with lots of unique tools and utilities to help you make
+light work of installations, snapshots and disk management
+
+-   **[qqX](https://github.com/TuxVinyards/qqX)** is independently
+    curated by [Alex Genovese](https://github.com/TuxVinyards) (see the
+    github pages)
+
+![qqX-vmm](https://github.com/TuxVinyards/qqX/assets/3956806/18e5c495-8072-49a5-8b9c-e1302549efcf)
+
 # Install Quickemu
+
+## Arch
+
+Quickemu is available from the AUR (Arch user repository), and can be
+installed via any AUR helper. Assuming your AUR helper is yay, Run the
+following command:
+
+``` bash
+yay -Sy quickemu
+```
 
 ## Ubuntu
 
@@ -219,6 +241,7 @@ series.
 All the official Ubuntu flavours are supported, just replace `ubuntu`
 with your preferred flavour.
 
+-   `edubuntu` (Edubuntu)
 -   `kubuntu` (Kubuntu)
 -   `lubuntu` (Lubuntu)
 -   `ubuntu-budgie` (Ubuntu Budgie)
@@ -231,6 +254,21 @@ with your preferred flavour.
 -   `ubuntu-unity` (Ubuntu Unity)
 -   `xubuntu` (Xubuntu)
 
+You can also use `quickget` with options to:
+
+``` shell
+    # show an OS ISO download URL for {os} {release} [edition] 
+    quickget --show-iso-url fedora 38 Silverblue   
+    # test if and OS ISO is available for {os} {release} [edition]
+    quickget --test-iso-url nixos 23.05 plasma5
+    # open an OS distribution homepage in a browser
+    quickget --open-distro-homepage  ubuntu-mate
+```
+
+The `--show-iso-url` and `--test-iso-url` options **do not** work for
+`Windows` (`quickget` will begin downloading the requested release and
+edition of windows)
+
 ## Other Operating Systems
 
 `quickget` also supports:
@@ -238,11 +276,14 @@ with your preferred flavour.
 -   `alma` (Alma Linux)
 -   `alpine` (Alpine Linux)
 -   `android` (Android x86)
+-   `antix` (Antix)
 -   `archcraft` (Archcraft)
 -   `archlinux` (Arch Linux)
 -   `arcolinux` (Arco Linux)
 -   `batocera` (Batocera)
 -   `blendos` (BlendOS)
+-   `bodhi` (Bodhi)
+-   `bunsenlabs` (Bunsenlabs)
 -   `cachyos` (CachyOS)
 -   `centos-stream` (CentOS Stream)
 -   `debian` (Debian)
@@ -255,13 +296,15 @@ with your preferred flavour.
 -   `fedora` (Fedora)
 -   `freebsd` (FreeBSD)
 -   `freedos` (FreeDOS)
+-   `garuda` (Garuda Linux)
 -   `gentoo` (Gentoo)
 -   `ghostbsd` (GhostBSD)
 -   `haiku` (Haiku)
--   `holoiso` (HoloISO)
+-   `holoiso` (SteamOS HoloISO)
 -   `kali` (Kali)
 -   `kdeneon` (KDE Neon)
 -   `kolibrios` (KolibriOS)
+-   `linuxlite` (Linux Lite)
 -   `linuxmint` (Linux Mint)
 -   `lmde` (Linux Mint Debian Edition)
 -   `mageia` (Mageia)
@@ -274,14 +317,19 @@ with your preferred flavour.
 -   `openindiana` (OpenIndiana)
 -   `opensuse` (openSUSE)
 -   `oraclelinux` (Oracle Linux)
+-   `peppermint` (PeppermintOS)
 -   `popos` (Pop!\_OS)
+-   `porteus` (Porteus)
 -   `reactos` (ReactOS)
 -   `rebornos` (RebornOS)
 -   `rockylinux` (Rocky Linux)
 -   `siduction` (Siduction)
 -   `slackware` (Slackware)
 -   `solus` (Solus)
+-   `spiral` (Spiral)
 -   `tails` (Tails)
+-   `tinycore` (Tiny Core Linux)
+-   `trisquel` (Trisquel)
 -   `truenas-core` (TrueNAS Core)
 -   `truenas-scale` (TrueNAS Scale)
 -   `vanillaos` (Vanilla OS)
@@ -325,8 +373,8 @@ quickget macos catalina
 quickemu --vm macos-catalina.conf
 ```
 
-macOS `high-sierra`, `mojave`, `catalina`, `big-sur` and `monterey` are
-supported.
+macOS `high-sierra`, `mojave`, `catalina`, `big-sur`, `monterey` and
+`ventura` are supported.
 
 -   Use cursor keys and enter key to select the **macOS Base System**
 -   From **macOS Utilities**
@@ -336,8 +384,8 @@ supported.
             click **Erase**.
         -   Enter a `Name:` for the disk
         -   If you are installing macOS Mojave or later (Catalina, Big
-            Sur, and Monterey), choose any of the APFS options as the
-            filesystem. MacOS Extended may not work.
+            Sur, Monterey and Ventura), choose any of the APFS options
+            as the filesystem. MacOS Extended may not work.
     -   Click **Erase**.
     -   Click **Done**.
     -   Close Disk Utility
@@ -413,6 +461,7 @@ There are some considerations when running macOS via Quickemu.
     -   Catalina **(Recommended)**
     -   Big Sur
     -   Monterey
+    -   Ventura
 -   `quickemu` will automatically download the required
     [OpenCore](https://github.com/acidanthera/OpenCorePkg) bootloader
     and OVMF firmware from [OSX-KVM](https://github.com/kholia/OSX-KVM).
@@ -460,7 +509,7 @@ sudo rm /Library/Preferences/SystemConfiguration/NetworkInterfaces.plist
 
 Now reboot, and the App Store should work.
 
-## Windows 10 & 11 Guests
+## Windows 8, 10 & 11 Guests
 
 `quickget` can download
 [Windows10](https://www.microsoft.com/software-download/windows10) and
@@ -469,14 +518,17 @@ automatically and create an optimised virtual machine configuration.
 This configuration also includes the [VirtIO drivers for
 Windows](https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/).
 
+Windows 8.1 is also supported but doesn't feature any automated
+installation or driver optimisation.
+
 ``` bash
 quickget windows 11
-quickemu --vm windows-11-22H2.conf
+quickemu --vm windows-11.conf
 ```
 
 -   Complete the installation as you normally would.
 -   All relevant drivers and services should be installed automatically.
--   A local adminstrator user account is automatically created, with
+-   A local administrator user account is automatically created, with
     these credentials:
     -   Username: `Quickemu`
     -   Password: `quickemu`
@@ -489,7 +541,7 @@ disk_img="windows-11/disk.qcow2"
 iso="windows-11/windows-11.iso"
 fixed_iso="windows-11/virtio-win.iso"
 tpm="on"
-secureboot="on"
+secureboot="off"
 ```
 
 -   `guest_os="windows"` instructs `quickemu` to optimise for Windows.
@@ -748,6 +800,7 @@ Usage
   quickemu --vm ubuntu.conf
 
 You can also pass optional parameters
+  --access                          : Enable remote spice access support. 'local' (default), 'remote', 'clientipaddress'
   --braille                         : Enable braille support. Requires SDL.
   --delete-disk                     : Delete the disk image and EFI variables
   --delete-vm                       : Delete the entire VM and it's configuration
@@ -765,7 +818,7 @@ You can also pass optional parameters
   --viewer <viewer>                 : Choose an alternative viewer. @Options: 'spicy' (default), 'remote-viewer', 'none'
   --ssh-port <port>                 : Set ssh-port manually
   --spice-port <port>               : Set spice-port manually
-  --public-dir <path>               : expose share directory. @Options: '' (default: xdg-user-dir PUBLICSHARE), '<directory>', 'none'
+  --public-dir <path>               : Expose share directory. @Options: '' (default: xdg-user-dir PUBLICSHARE), '<directory>', 'none'
   --monitor <type>                  : Set monitor connection type. @Options: 'socket' (default), 'telnet', 'none'
   --monitor-telnet-host <ip/host>   : Set telnet host for monitor. (default: 'localhost')
   --monitor-telnet-port <port>      : Set telnet port for monitor. (default: '4440')
@@ -777,6 +830,7 @@ You can also pass optional parameters
   --keyboard_layout <layout>        : Set keyboard layout.
   --mouse <type>                    : Set mouse. @Options: 'tablet' (default), 'ps2', 'usb', 'virtio'
   --usb-controller <type>           : Set usb-controller. @Options: 'ehci' (default), 'xhci', 'none'
+  --sound-card <type>               : Set sound card. @Options: 'intel-hda' (default), 'ac97', 'es1370', 'sb16', 'none'
   --extra_args <arguments>          : Pass additional arguments to qemu
   --version                         : Print version
 
@@ -838,8 +892,8 @@ which Quickemu sizes to 2048x1152. Without the `--screen` option,
 Quickemu would have used the 1920x1080 monitor which results in a window
 size of 1664x936.
 
-The '--screenpct' is an optional interger value between 25 \<= pct \<
-100 which will override system default screen sizes. The VM size will be
+The '--screenpct' is an optional integer value between 25 \<= pct \< 100
+which will override system default screen sizes. The VM size will be
 'pct' of the chosen screen. **If --fullscreen is chosen screen will be
 fullsize instead of being scaled down by --screenpct value.**
 
